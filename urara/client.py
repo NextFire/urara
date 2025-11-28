@@ -1,4 +1,5 @@
 import logging
+from contextlib import suppress
 
 import discord
 from discord import app_commands
@@ -18,6 +19,10 @@ class UraraClient(discord.Client):
 
     async def setup_hook(self):
         await self.tree.sync()
+        # force mcp servers initialization
+        with suppress(Exception):
+            async with agent:
+                pass
 
 
 client = UraraClient()
