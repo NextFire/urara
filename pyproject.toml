@@ -3,5 +3,17 @@ name = "urara"
 version = "0.1.0"
 description = "Add your description here"
 readme = "README.md"
-requires-python = ">=3.11"
-dependencies = []
+license = "AGPL-3.0-only"
+authors = [{ name = "NextFire", email = "git@yuru.moe" }]
+requires-python = ">=3.12"
+dependencies = ["discord-py==2.6.4", "pydantic-ai-slim[openrouter,mcp]==1.25.0"]
+
+[project.urls]
+homepage = "https://github.com/NextFire/urara"
+
+[tool.pyright]
+pythonVersion = "3.12"
+typeCheckingMode = "strict"
+
+[tool.ruff.lint]
+extend-select = ["I"]
