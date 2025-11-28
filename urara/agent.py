@@ -1,9 +1,11 @@
+import os
+
 from pydantic import constr
 from pydantic_ai import Agent
 from pydantic_ai.mcp import MCPServerStdio, MCPServerStreamableHTTP
 
 agent = Agent(
-    "openrouter:openai/gpt-4.1-mini",
+    f"openrouter:{os.getenv('OPENROUTER_MODEL', 'openai/gpt-4.1-mini')}",
     output_type=constr(max_length=2000),
     toolsets=[
         MCPServerStreamableHTTP("https://mcp.deepwiki.com/mcp", max_retries=5),
