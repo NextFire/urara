@@ -37,20 +37,16 @@ async def on_ready():
 
 
 @client.tree.command()
-async def urara_ask(interaction: discord.Interaction, prompt: str):
+async def urara_ask(interaction: discord.Interaction, prompt: str, reset: bool = False):
     """Asks Urara a question."""
     await interaction.response.defer()
     try:
-        result = await agent.run(prompt, message_history=client.message_history)
+        result = await agent.run(
+            prompt,
+            message_history=[] if reset else client.message_history,
+        )
         await interaction.followup.send(result.output)
         client.message_history = result.all_messages()
     except Exception as e:
         await interaction.followup.send(str(e))
         raise
-
-
-@client.tree.command()
-async def urara_reset(interaction: discord.Interaction):
-    """Resets the message history."""
-    client.message_history = []
-    await interaction.response.send_message("Message history cleared.", ephemeral=True)
