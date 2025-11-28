@@ -8,10 +8,15 @@ agent = Agent(
     f"openrouter:{os.getenv('OPENROUTER_MODEL', 'openai/gpt-4.1-mini')}",
     output_type=constr(max_length=2000),
     toolsets=[
-        MCPServerStreamableHTTP("https://mcp.deepwiki.com/mcp", max_retries=5),
+        MCPServerStreamableHTTP(
+            "https://mcp.deepwiki.com/mcp",
+            timeout=60,
+            max_retries=5,
+        ),
         MCPServerStdio(
             "uvx",
             ["kubernetes-mcp-server@latest", "--read-only", "--toolsets", "core"],
+            timeout=60,
             max_retries=5,
         ),
     ],
