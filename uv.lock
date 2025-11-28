@@ -1251,8 +1251,7 @@ wheels = [
 
 [[package]]
 name = "urara"
-version = "0.1.0"
-source = { virtual = "." }
+source = { editable = "." }
 dependencies = [
     { name = "discord-py" },
     { name = "pydantic-ai-slim", extra = ["mcp", "openrouter"] },
@@ -1261,7 +1260,7 @@ dependencies = [
 [package.metadata]
 requires-dist = [
     { name = "discord-py", specifier = "==2.6.4" },
-    { name = "pydantic-ai-slim", extras = ["openrouter", "mcp"], specifier = "==1.25.0" },
+    { name = "pydantic-ai-slim", extras = ["mcp", "openrouter"], specifier = "==1.25.0" },
 ]
 
 [[package]]

@@ -1,6 +1,6 @@
 [project]
 name = "urara"
-version = "0.1.0"
+dynamic = ["version"]
 description = "Add your description here"
 readme = "README.md"
 license = "AGPL-3.0-only"
@@ -8,8 +8,18 @@ authors = [{ name = "NextFire", email = "git@yuru.moe" }]
 requires-python = ">=3.12"
 dependencies = ["discord-py==2.6.4", "pydantic-ai-slim[openrouter,mcp]==1.25.0"]
 
+[project.scripts]
+urara = "urara.__main__:main"
+
 [project.urls]
 homepage = "https://github.com/NextFire/urara"
+
+[build-system]
+requires = ["hatchling", "hatch-vcs"]
+build-backend = "hatchling.build"
+
+[tool.hatch.version]
+source = "vcs"
 
 [tool.pyright]
 pythonVersion = "3.12"
