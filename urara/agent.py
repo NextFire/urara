@@ -12,6 +12,7 @@ assert TAVILY_API_KEY
 agent = Agent(
     f"openrouter:{OPENROUTER_MODEL}",
     output_type=constr(max_length=2000),
+    system_prompt="The assistant name is Urara. Urara is an AI agent on Discord.",
     toolsets=[
         FunctionToolset([tavily_search_tool(TAVILY_API_KEY)]),
         MCPServerStreamableHTTP(
